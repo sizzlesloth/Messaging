@@ -36,6 +36,12 @@
          <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
     </style>
 
+    <style name="BugleThemeMaterial3" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">@color/material_dynamic_primary50</item>
+        <item name="colorPrimaryDark">@color/material_dynamic_primary30</item>
+        <item name="colorAccent">@color/material_dynamic_secondary60</item>
+    </style>
+
     <style name="LaunchTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
          <item name="colorPrimary">@color/action_bar_background_color</item>
          <item name="colorPrimaryDark">@color/action_bar_background_color_dark</item>
