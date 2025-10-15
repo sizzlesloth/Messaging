@@ -67,7 +67,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:appCategory="social"
         android:label="@string/app_name"
-        android:theme="@style/BugleThemeMaterial3"
+        android:theme="@style/BugleTheme"
         android:supportsRtl="true">
 
         <!-- Displays a list of conversations -->
@@ -159,7 +159,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="user"
             android:theme="@style/BuglePhotoViewTheme"
-            />
+        />
 
         <!-- Settings -->
         <activity
