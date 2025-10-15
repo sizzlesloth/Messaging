@@ -126,13 +126,13 @@ public class BugleApplication extends Application implements UncaughtExceptionHa
 
     private static void registerCarrierConfigChangeReceiver(final Context context) {
         context.registerReceiver(new BroadcastReceiver() {
-                                     @Override
-                                     public void onReceive(Context context, Intent intent) {
-                                         LogUtil.i(TAG, "Carrier config changed. Reloading MMS config.");
-                                         MmsConfig.loadAsync();
-                                     }
-                                 }, new IntentFilter(CarrierConfigManager.ACTION_CARRIER_CONFIG_CHANGED),
-                Context.RECEIVER_EXPORTED/*UNAUDITED*/);
+             @Override
+             public void onReceive(Context context, Intent intent) {
+                 LogUtil.i(TAG, "Carrier config changed. Reloading MMS config.");
+                 MmsConfig.loadAsync();
+             }
+         }, new IntentFilter(CarrierConfigManager.ACTION_CARRIER_CONFIG_CHANGED),
+        Context.RECEIVER_EXPORTED/*UNAUDITED*/);
     }
 
     private static void initMmsLib(final Context context, final BugleGservices bugleGservices,
@@ -194,20 +194,18 @@ public class BugleApplication extends Application implements UncaughtExceptionHa
             // Start method tracing with a big enough buffer and let it run for 30s.
             // Note we use a logging tag as we don't want to wait for gservices to start up.
             final File file = DebugUtils.getDebugFile("startup.trace", true);
-            if (file != null) {
-                android.os.Debug.startMethodTracing(file.getAbsolutePath(), 160 * 1024 * 1024);
-                new Handler(Looper.getMainLooper()).postDelayed(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                android.os.Debug.stopMethodTracing();
-                                // Allow world to see trace file
-                                DebugUtils.ensureReadable(file);
-                                LogUtil.d(LogUtil.PROFILE_TAG, "Tracing complete - "
-                                        + file.getAbsolutePath());
-                            }
-                        }, 30000);
-            }
+            android.os.Debug.startMethodTracing(file.getAbsolutePath(), 160 * 1024 * 1024);
+            new Handler(Looper.getMainLooper()).postDelayed(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        android.os.Debug.stopMethodTracing();
+                        // Allow world to see trace file
+                        DebugUtils.ensureReadable(file);
+                        LogUtil.d(LogUtil.PROFILE_TAG, "Tracing complete - "
+                                + file.getAbsolutePath());
+                    }
+                }, 30000);
         }
     }
 
